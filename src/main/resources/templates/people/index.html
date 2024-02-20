@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>People List</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <link th:href="@{/styles/bootstrap.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <div th:if="${#lists.isEmpty(peopleList)}" class="container background">
+        <h2 class="text-center">There are no people names found by the insert input! </h2>
+        <a th:href="@{/}">
+            <button class="btn btn-primary">HOME</button>
+        </a>
+    </div>
+    <div th:unless="${#lists.isEmpty(peopleList)}" class="container">
+        <h2 class="text-center">People table</h2>
+        <table border="2" th:class="employee-table">
+            <thead>
+            <tr th:class="table-header">
+                <th>Person ID </th>
+                <th>Pin</th>
+                <th>Full Name</th>
+                <th>Address</th>
+                <th>Address type</th>
+                <th>Email</th>
+                <th>Email type</th>
+                <th>Remove</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody th:each="item : ${peopleList}">
+
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.pin}"></td>
+            <td th:text=" ${item.fullName}"></td>
+            <td th:text="${item.addrInfo}"></td>
+            <td th:text="${item.addrType}"></td>
+            <td th:text="${item.mailType}"></td>
+            <td th:text="${item.mail}"></td>
+            <td >
+                <a th:href="@{/people/remove/{id}(id=${item.id})}">
+                    <button class="btn btn-danger">REMOVE USER</button>
+                </a>
+            </td>
+            <td >
+                <a th:href="@{/people/edit/{id}(id=${item.id})}">
+                    <button class="btn btn-warning">EDIT USER</button>
+                </a>
+            </td>
+            <!--                    </tr>-->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<!--<ul>-->
+<!--    &lt;!&ndash; Using th:each to iterate over items &ndash;&gt;-->
+<!--    <li th:each="item : ${peopleList}">-->
+<!--        &lt;!&ndash; Accessing properties of each item &ndash;&gt;-->
+<!--        <span th:text="${item.id}"></span>-->
+<!--        <span th:text="${item.pin}"></span>-->
+<!--        <span th:text="${item.fullName}"></span>-->
+<!--        <span th:text="${item.addressInfo}"></span>-->
+<!--        <span th:text="${item.addressType}"></span>-->
+<!--        <span th:text="${item.emailType}"></span>-->
+<!--        <span th:text="${item.email}"></span>-->
+
+<!--        <a th:href="@{/people/remove/{id}(id=${item.id})}">-->
+<!--            <button>REMOVE USER</button>-->
+<!--        </a>-->
+
+<!--        <a th:href="@{/people/edit/{id}(id=${item.id})}">-->
+<!--            <button>EDIT USER</button>-->
+<!--        </a>-->
+<!--    </li>-->
+<!--</ul>-->
+</body>
+</html>

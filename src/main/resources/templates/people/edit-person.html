@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/bootstrap.css">
+</head>
+<body>
+<div th:class="container">
+    <!--/*@thymesVar id="peopleServiceModel" type="com.example.demo.web.models.PeopleServiceModel"*/-->
+    <form th:class="add-people-form" th:method="post" th:action="@{/people/edit/{id}(id=${peopleModel.id})}" th:object="${peopleServiceModel}">
+        <label for="fullName">Full name</label>
+        <input th:value="${peopleModel.fullName}" th:class="choose-file"   th:type="text" id="fullName" name="fullName"/>
+        <ul th:if="${#fields.hasErrors('fullName')}">
+            <li class="text-danger" th:each="error : ${#fields.errors('fullName')} " th:text="${error}"></li>
+        </ul>
+
+        <label for="pin">PIN</label>
+        <input th:value="${peopleModel.pin}" th:class="choose-file" th:field="*{pin}" th:type="text" id="pin" name="pin"  />
+        <ul th:if="${#fields.hasErrors('pin')}">
+            <li class="text-danger" th:each="error : ${#fields.errors('pin')} " th:text="${error}"></li>
+        </ul>
+
+        <label for="addressType">Address type</label>
+        <input th:value="${peopleModel.addrType}" th:class="choose-file" th:type="text" th:field="*{addressType}" id="addressType" name="addressType" />
+        <ul th:if="${#fields.hasErrors('addressType')}">
+            <li class="text-danger" th:each="error : ${#fields.errors('addressType')} " th:text="${error}"></li>
+        </ul>
+
+        <label for="addressInfo">Address</label>
+        <input th:value="${peopleModel.addrInfo}" th:class="choose-file" th:field="*{addressInfo}" th:type="text" id="addressInfo" name="addressInfo"/>
+        <ul th:if="${#fields.hasErrors('addressInfo')}">
+            <li class="text-danger" th:each="error : ${#fields.errors('addressInfo')} " th:text="${error}">${peopleModel.addrInfo}</li>
+        </ul>
+
+        <label for="email">Email</label>
+        <input th:value="${peopleModel.mail}" th:class="choose-file" th:field="*{email}" th:type="text" id="email" name="email" />
+        <ul th:if="${#fields.hasErrors('email')}">
+            <li class="text-danger" th:each="error : *{#fields.errors('email')} " th:text="${error}"></li>
+        </ul>
+
+        <label for="emailType">Email Type</label>
+        <input th:value="${peopleModel.mailType}" th:class="choose-file" th:field="*{emailType}" th:type="text" id="emailType" name="emailType" />
+        <ul th:if="${#fields.hasErrors('emailType')}">
+            <li class="text-danger" th:each="error : ${#fields.errors('emailType')} " th:text="${error}"></li>
+        </ul>
+        <button class="btn btn-warning" th:type="submit">UPDATE</button>
+    </form>
+</div>
+</body>
+</html>
+</body>
+</html>
